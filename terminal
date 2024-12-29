@@ -1,0 +1,49 @@
+# 创建 React + TypeScript 项目
+npm create vite@latest electron-app -- --template react-ts
+cd electron-app
+
+# 手动删除问题目录
+rm -rf node_modules/@types/verror
+
+# 重新安装依赖
+npm install
+npm install electron electron-builder --save-dev
+npm install @shadcn/ui class-variance-authority clsx tailwind-merge lucide-react
+npm install -D tailwindcss postcss autoprefixer 
+npm install -D concurrently wait-on @radix-ui/react-slot 
+
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add sidebar
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add separator
+npx shadcn-ui@latest add scroll-area 
+
+npm install -D rimraf 
+
+# 删除可能存在的重复文件
+rm -f src/components/layout/Sidebar.tsx
+rm -f src/components/layout/MainLayout.tsx
+
+# 确保使用正确的小写文件名
+mv src/components/layout/sidebar.tsx src/components/layout/sidebar.tsx.temp
+mv src/components/layout/sidebar.tsx.temp src/components/layout/sidebar.tsx
+
+mv src/components/layout/main-layout.tsx src/components/layout/main-layout.tsx.temp
+mv src/components/layout/main-layout.tsx.temp src/components/layout/main-layout.tsx
+
+# 重新初始化 shadcn-ui
+npx shadcn-ui@latest init
+
+# 安装组件
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add separator
+npx shadcn-ui@latest add scroll-area
+npx shadcn-ui@latest add dropdown-menu 
+
+# 安装必要的依赖
+npm install @radix-ui/react-dropdown-menu 
+
+# 安装必要的组件
+npx shadcn-ui@latest add avatar
+npx shadcn-ui@latest add collapsible
+npx shadcn-ui@latest add dropdown-menu 
